@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Tudo Me Lembra Você</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+background:#0a0a0a;
+font-family:"Cormorant Garamond",serif;
+color:#e8d8a6;
+overflow:hidden;
+}
+
+#particles{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+.book-container{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.book{
+width:800px;
+height:500px;
+position:relative;
+perspective:2000px;
+}
+
+.page{
+width:100%;
+height:100%;
+position:absolute;
+background:#111;
+border:1px solid #c9a646;
+box-shadow:0 0 30px rgba(201,166,70,0.3);
+padding:60px;
+box-sizing:border-box;
+transform-origin:left;
+transition:transform 1s;
+}
+
+.page img{
+max-width:300px;
+margin-top:20px;
+border-radius:6px;
+}
+
+.page h1{
+font-family:"Cinzel";
+color:#d4af37;
+}
+
+.page p{
+font-size:22px;
+line-height:1.5;
+}
+
+button{
+background:#d4af37;
+border:none;
+padding:10px 20px;
+font-family:"Cinzel";
+cursor:pointer;
+margin-top:20px;
+}
+
+.hidden{
+display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="book-container">
+<div class="book" id="book">
+
+<div class="page" id="cover">
+
+<h1>Tudo Me Lembra Você</h1>
+<h3>Pavlovich</h3>
+
+<p>
+Um pequeno livro feito para guardar as coisas que sempre acabam me levando até você.
+</p>
+
+<button onclick="nextPage()">Abrir o livro</button>
+
+</div>
+
+<div class="page hidden">
+
+<h1>Para Angel Belluci Masaki</h1>
+
+<p>
+
+Este pequeno livro é um presente para você, Angel.<br><br>
+
+Uma coleção de coisas que, de algum jeito curioso ou bonito,
+sempre acabam me lembrando de você.<br><br>
+
+Algumas são simples.<br>
+Outras intensas.<br>
+Algumas são apenas detalhes.<br><br>
+
+Mas todas carregam um pouco da sua presença.
+
+</p>
+
+<button onclick="playMusic()">Tocar música</button>
+<button onclick="nextPage()">Continuar</button>
+
+</div>
+
+<div class="page hidden">
+
+<h1>Lírios</h1>
+
+<p>
+Elegantes, intensos e impossíveis de ignorar —
+exatamente como a sua presença.
+</p>
+
+<img src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166">
+
+<button onclick="nextPage()">Próxima página</button>
+
+</div>
+
+<div class="page hidden">
+
+<h1>Botas de salto</h1>
+
+<p>
+Existe poder na maneira como certos passos são dados.
+</p>
+
+<img src="https://images.unsplash.com/photo-1520975922323-2f0b1b3c6c7d">
+
+<button onclick="nextPage()">Próxima página</button>
+
+</div>
+
+<div class="page hidden">
+
+<h1>Ballet</h1>
+
+<p>
+Delicadeza que exige força.
+</p>
+
+<img src="https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff">
+
+<button onclick="nextPage()">Próxima página</button>
+
+</div>
+
+<div class="page hidden">
+
+<h1>A Noiva Cadáver</h1>
+
+<p>
+Beleza no estranho.
+Romance nas sombras.
+</p>
+
+<img src="https://images.unsplash.com/photo-1608889175112-e4d33c8c4e3d">
+
+<button onclick="nextPage()">Próxima página</button>
+
+</div>
+
+<div class="page hidden">
+
+<h1>Epílogo</h1>
+
+<p>
+
+Mas existem coisas que não cabem em imagens.<br><br>
+
+Seu ciúme discreto,<br>
+a provocação que sempre aparece no momento certo,<br>
+sua intensidade,<br>
+sua inteligência,<br>
+e essa forma única de existir no mundo.<br><br>
+
+Talvez seja por isso que,<br>
+quanto mais descubro sobre você,<br>
+mais vontade tenho de continuar virando as páginas.
+
+</p>
+
+</div>
+
+</div>
+</div>
+
+<audio id="music">
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+let pages = document.querySelectorAll(".page");
+let current = 0;
+
+function nextPage(){
+
+pages[current].classList.add("hidden");
+current++;
+
+if(pages[current]){
+pages[current].classList.remove("hidden");
+}
+
+}
+
+function playMusic(){
+document.getElementById("music").play();
+}
+
+</script>
+
+<script>
+
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<120;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2+1,
+d:Math.random()*1
+});
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="#d4af37";
+
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fill();
+p.y+=p.d;
+
+if(p.y>canvas.height){
+p.y=0;
+}
+});
+
+requestAnimationFrame(draw);
+}
+
+draw();
+
+</script>
+
+</body>
+</html>
