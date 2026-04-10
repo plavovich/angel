@@ -13,37 +13,7 @@ body{
 margin:0;
 background:#0a0a0a;
 font-family:"Cormorant Garamond",serif;
-color:#e8d8a6;
-overflow-x:hidden;
-}
-
-.page{
-width:90%;
-max-width:800px;
-margin:120px auto;
-padding:60px;
-background:#111;
-border:1px solid #d4af37;
-box-shadow:0 0 30px rgba(212,175,55,0.3);
-}
-
-h1{
-font-family:"Cinzel";
-color:#d4af37;
-}
-
-img{
-max-width:300px;
-margin-top:20px;
-border-radius:6px;
-}
-
-button{
-background:#d4af37;
-border:none;
-padding:10px 20px;
-cursor:pointer;
-font-family:"Cinzel";
+overflow:hidden;
 }
 
 canvas{
@@ -53,6 +23,51 @@ left:0;
 z-index:-1;
 }
 
+.book{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.page{
+width:85%;
+max-width:700px;
+height:420px;
+background:#f5f1e6;
+border-radius:6px;
+padding:50px;
+box-shadow:0 0 40px rgba(212,175,55,0.4);
+display:none;
+}
+
+.page.active{
+display:block;
+}
+
+h1{
+font-family:"Cinzel";
+color:#b8962e;
+}
+
+p{
+color:#333;
+font-size:18px;
+}
+
+.controls{
+margin-top:30px;
+}
+
+button{
+background:#d4af37;
+border:none;
+padding:10px 20px;
+margin-right:10px;
+cursor:pointer;
+font-family:"Cinzel";
+}
+
 </style>
 </head>
 
@@ -60,14 +75,22 @@ z-index:-1;
 
 <canvas id="particles"></canvas>
 
-<div class="page">
+<div class="book">
+
+<div class="page active">
 
 <h1>Tudo Me Lembra Você</h1>
+
 <p>Pavlovich</p>
 
 <p>
-Um pequeno livro feito para guardar as coisas que sempre acabam me levando até você.
+Um pequeno livro feito para guardar as coisas
+que sempre acabam me levando até você.
 </p>
+
+<div class="controls">
+<button onclick="nextPage()">Abrir</button>
+</div>
 
 </div>
 
@@ -90,7 +113,11 @@ Mas todas carregam um pouco da sua presença.
 
 </p>
 
+<div class="controls">
+<button onclick="prevPage()">Voltar</button>
 <button onclick="playMusic()">Tocar música</button>
+<button onclick="nextPage()">Continuar</button>
+</div>
 
 </div>
 
@@ -99,8 +126,14 @@ Mas todas carregam um pouco da sua presença.
 <h1>Lírios</h1>
 
 <p>
-Elegantes, intensos e impossíveis de ignorar — exatamente como a sua presença.
+Elegantes, intensos e impossíveis de ignorar —
+exatamente como a sua presença.
 </p>
+
+<div class="controls">
+<button onclick="prevPage()">Voltar</button>
+<button onclick="nextPage()">Próxima</button>
+</div>
 
 </div>
 
@@ -112,6 +145,11 @@ Elegantes, intensos e impossíveis de ignorar — exatamente como a sua presenç
 Existe poder na maneira como certos passos são dados.
 </p>
 
+<div class="controls">
+<button onclick="prevPage()">Voltar</button>
+<button onclick="nextPage()">Próxima</button>
+</div>
+
 </div>
 
 <div class="page">
@@ -122,6 +160,11 @@ Existe poder na maneira como certos passos são dados.
 Delicadeza que exige força.
 </p>
 
+<div class="controls">
+<button onclick="prevPage()">Voltar</button>
+<button onclick="nextPage()">Próxima</button>
+</div>
+
 </div>
 
 <div class="page">
@@ -129,8 +172,14 @@ Delicadeza que exige força.
 <h1>A Noiva Cadáver</h1>
 
 <p>
-Beleza no estranho. Romance nas sombras.
+Beleza no estranho.
+Romance nas sombras.
 </p>
+
+<div class="controls">
+<button onclick="prevPage()">Voltar</button>
+<button onclick="nextPage()">Próxima</button>
+</div>
 
 </div>
 
@@ -154,6 +203,12 @@ mais vontade tenho de continuar virando as páginas.
 
 </p>
 
+<div class="controls">
+<button onclick="prevPage()">Voltar</button>
+</div>
+
+</div>
+
 </div>
 
 <audio id="music">
@@ -161,6 +216,28 @@ mais vontade tenho de continuar virando as páginas.
 </audio>
 
 <script>
+
+let pages=document.querySelectorAll(".page")
+let current=0
+
+function showPage(index){
+pages.forEach(p=>p.classList.remove("active"))
+pages[index].classList.add("active")
+}
+
+function nextPage(){
+if(current<pages.length-1){
+current++
+showPage(current)
+}
+}
+
+function prevPage(){
+if(current>0){
+current--
+showPage(current)
+}
+}
 
 function playMusic(){
 document.getElementById("music").play()
