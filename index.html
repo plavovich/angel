@@ -7,9 +7,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
-
 <style>
 
 body{
@@ -17,32 +14,28 @@ margin:0;
 background:#0a0a0a;
 font-family:"Cormorant Garamond",serif;
 color:#e8d8a6;
-overflow:hidden;
-}
-
-canvas{
-position:fixed;
-z-index:-1;
-}
-
-#book{
-width:900px;
-height:600px;
-margin:auto;
-margin-top:5vh;
+overflow-x:hidden;
 }
 
 .page{
+width:90%;
+max-width:800px;
+margin:120px auto;
+padding:60px;
 background:#111;
 border:1px solid #d4af37;
-box-shadow:0 0 30px rgba(212,175,55,0.4);
-padding:60px;
-box-sizing:border-box;
+box-shadow:0 0 30px rgba(212,175,55,0.3);
 }
 
 h1{
 font-family:"Cinzel";
 color:#d4af37;
+}
+
+img{
+max-width:300px;
+margin-top:20px;
+border-radius:6px;
 }
 
 button{
@@ -53,10 +46,11 @@ cursor:pointer;
 font-family:"Cinzel";
 }
 
-img{
-max-width:300px;
-margin-top:20px;
-border-radius:5px;
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
 
 </style>
@@ -66,16 +60,13 @@ border-radius:5px;
 
 <canvas id="particles"></canvas>
 
-<div id="book">
-
 <div class="page">
 
 <h1>Tudo Me Lembra Você</h1>
 <p>Pavlovich</p>
 
 <p>
-Um pequeno livro feito para guardar coisas
-que sempre acabam me levando até você.
+Um pequeno livro feito para guardar as coisas que sempre acabam me levando até você.
 </p>
 
 </div>
@@ -108,11 +99,8 @@ Mas todas carregam um pouco da sua presença.
 <h1>Lírios</h1>
 
 <p>
-Elegantes, intensos e impossíveis de ignorar —
-exatamente como a sua presença.
+Elegantes, intensos e impossíveis de ignorar — exatamente como a sua presença.
 </p>
-
-<img src="lirio.jpg">
 
 </div>
 
@@ -124,8 +112,6 @@ exatamente como a sua presença.
 Existe poder na maneira como certos passos são dados.
 </p>
 
-<img src="bota.jpg">
-
 </div>
 
 <div class="page">
@@ -136,8 +122,6 @@ Existe poder na maneira como certos passos são dados.
 Delicadeza que exige força.
 </p>
 
-<img src="ballet.jpg">
-
 </div>
 
 <div class="page">
@@ -145,11 +129,8 @@ Delicadeza que exige força.
 <h1>A Noiva Cadáver</h1>
 
 <p>
-Beleza no estranho.
-Romance nas sombras.
+Beleza no estranho. Romance nas sombras.
 </p>
-
-<img src="corpse.jpg">
 
 </div>
 
@@ -175,19 +156,11 @@ mais vontade tenho de continuar virando as páginas.
 
 </div>
 
-</div>
-
 <audio id="music">
 <source src="music.mp3">
 </audio>
 
 <script>
-
-$("#book").turn({
-width:900,
-height:600,
-autoCenter:true
-})
 
 function playMusic(){
 document.getElementById("music").play()
@@ -197,11 +170,11 @@ document.getElementById("music").play()
 
 <script>
 
-const canvas = document.getElementById("particles")
-const ctx = canvas.getContext("2d")
+const canvas=document.getElementById("particles")
+const ctx=canvas.getContext("2d")
 
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
 
 let particles=[]
 
