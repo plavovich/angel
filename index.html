@@ -5,7 +5,7 @@
 
 <title>Tudo Me Lembra Você</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 
@@ -18,54 +18,130 @@ overflow:hidden;
 
 canvas{
 position:fixed;
-top:0;
-left:0;
 z-index:-1;
 }
 
-.book{
+.viewer{
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 height:100vh;
 }
 
-.page{
-width:85%;
-max-width:700px;
-height:420px;
-background:#f5f1e6;
+.arrow{
+font-size:40px;
+color:#d4af37;
+cursor:pointer;
+padding:15px;
+user-select:none;
+}
+
+.book{
+
+width:90%;
+max-width:420px;
+height:80vh;
+
+background:#f3eee3;
+
 border-radius:6px;
-padding:50px;
-box-shadow:0 0 40px rgba(212,175,55,0.4);
+
+box-shadow:0 0 45px rgba(212,175,55,0.5);
+
+padding:30px;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+position:relative;
+
+}
+
+.page{
 display:none;
+height:100%;
+flex-direction:column;
+justify-content:space-between;
 }
 
 .page.active{
-display:block;
+display:flex;
 }
 
-h1{
+.cover{
+
+background:
+linear-gradient(#111,#111),
+url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+
+color:#d4af37;
+
+border:2px solid #d4af37;
+
+box-shadow:
+0 0 15px #d4af37,
+inset 0 0 15px rgba(212,175,55,0.5);
+
+}
+
+.cover h1{
+
+text-align:center;
 font-family:"Cinzel";
-color:#b8962e;
+font-size:30px;
+
 }
 
-p{
-color:#333;
+.cover p{
+
+text-align:center;
+margin-top:20px;
+font-style:italic;
+
+}
+
+.image{
+
+flex:1;
+display:flex;
+align-items:center;
+justify-content:center;
+
+}
+
+.image img{
+
+max-width:90%;
+max-height:280px;
+border-radius:5px;
+
+}
+
+.caption{
+
+text-align:center;
 font-size:18px;
+color:#333;
+
 }
 
-.controls{
-margin-top:30px;
-}
+.music{
 
-button{
+margin-top:20px;
 background:#d4af37;
 border:none;
 padding:10px 20px;
-margin-right:10px;
-cursor:pointer;
 font-family:"Cinzel";
+cursor:pointer;
+
+}
+
+h2{
+
+font-family:"Cinzel";
+color:#b8962e;
+text-align:center;
+
 }
 
 </style>
@@ -75,119 +151,162 @@ font-family:"Cinzel";
 
 <canvas id="particles"></canvas>
 
+<div class="viewer">
+
+<div class="arrow" onclick="prevPage()">❮</div>
+
 <div class="book">
 
-<div class="page active">
+<div class="page active cover">
 
 <h1>Tudo Me Lembra Você</h1>
 
 <p>Pavlovich</p>
 
-<p>
-Um pequeno livro feito para guardar as coisas
-que sempre acabam me levando até você.
+</div>
+
+<div class="page">
+
+<h2>Para Angel Belluci Masaki</h2>
+
+<p style="text-align:center">
+
+Este pequeno livro é um presente para você.
+
+Uma coleção de coisas que sempre acabam
+me levando até você.
+
 </p>
 
-<div class="controls">
-<button onclick="nextPage()">Abrir</button>
+<button class="music" onclick="toggleMusic()">Tocar / Pausar música</button>
+
+</div>
+
+<div class="page">
+
+<div class="image">
+<img src="lirios.jpg">
+</div>
+
+<div class="caption">
+Elegantes, intensos e impossíveis de ignorar — exatamente como a sua presença.
 </div>
 
 </div>
 
 <div class="page">
 
-<h1>Para Angel Belluci Masaki</h1>
-
-<p>
-
-Este pequeno livro é um presente para você, Angel.
-
-Uma coleção de coisas que, de algum jeito curioso ou bonito,
-sempre acabam me lembrando de você.
-
-Algumas são simples.
-Outras intensas.
-Algumas são apenas detalhes.
-
-Mas todas carregam um pouco da sua presença.
-
-</p>
-
-<div class="controls">
-<button onclick="prevPage()">Voltar</button>
-<button onclick="playMusic()">Tocar música</button>
-<button onclick="nextPage()">Continuar</button>
+<div class="image">
+<img src="bota.jpg">
 </div>
 
-</div>
-
-<div class="page">
-
-<h1>Lírios</h1>
-
-<p>
-Elegantes, intensos e impossíveis de ignorar —
-exatamente como a sua presença.
-</p>
-
-<div class="controls">
-<button onclick="prevPage()">Voltar</button>
-<button onclick="nextPage()">Próxima</button>
-</div>
-
-</div>
-
-<div class="page">
-
-<h1>Botas de salto</h1>
-
-<p>
+<div class="caption">
 Existe poder na maneira como certos passos são dados.
-</p>
-
-<div class="controls">
-<button onclick="prevPage()">Voltar</button>
-<button onclick="nextPage()">Próxima</button>
 </div>
 
 </div>
 
 <div class="page">
 
-<h1>Ballet</h1>
+<div class="image">
+<img src="ballet.jpg">
+</div>
 
-<p>
+<div class="caption">
 Delicadeza que exige força.
-</p>
-
-<div class="controls">
-<button onclick="prevPage()">Voltar</button>
-<button onclick="nextPage()">Próxima</button>
 </div>
 
 </div>
 
 <div class="page">
 
-<h1>A Noiva Cadáver</h1>
+<div class="image">
+<img src="corpse.jpg">
+</div>
 
-<p>
-Beleza no estranho.
-Romance nas sombras.
-</p>
-
-<div class="controls">
-<button onclick="prevPage()">Voltar</button>
-<button onclick="nextPage()">Próxima</button>
+<div class="caption">
+Beleza no estranho. Romance nas sombras.
 </div>
 
 </div>
 
 <div class="page">
 
-<h1>Epílogo</h1>
+<div class="image">
+<img src="vinho.jpg">
+</div>
 
-<p>
+<div class="caption">
+Intenso, elegante e sempre carregando um pouco de mistério.
+</div>
+
+</div>
+
+<div class="page">
+
+<div class="image">
+<img src="arte.jpg">
+</div>
+
+<div class="caption">
+Porque você transforma expressão em algo que se sente.
+</div>
+
+</div>
+
+<div class="page">
+
+<div class="image">
+<img src="poesia.jpg">
+</div>
+
+<div class="caption">
+Algumas pessoas parecem ter sido escritas em verso.
+</div>
+
+</div>
+
+<div class="page">
+
+<div class="image">
+<img src="melancolia.jpg">
+</div>
+
+<div class="caption">
+Existe uma beleza silenciosa nas emoções profundas.
+</div>
+
+</div>
+
+<div class="page">
+
+<div class="image">
+<img src="sardas.jpg">
+</div>
+
+<div class="caption">
+Pequenas constelações que tornam alguém ainda mais único.
+</div>
+
+</div>
+
+<div class="page">
+
+<div class="image">
+<img src="tatuagem.jpg">
+</div>
+
+<div class="caption">
+Histórias gravadas na pele.
+</div>
+
+</div>
+
+<div class="page">
+
+<h2>Epílogo</h2>
+
+<p style="text-align:center">
 
 Mas existem coisas que não cabem em imagens.
 
@@ -203,11 +322,11 @@ mais vontade tenho de continuar virando as páginas.
 
 </p>
 
-<div class="controls">
-<button onclick="prevPage()">Voltar</button>
 </div>
 
 </div>
+
+<div class="arrow" onclick="nextPage()">❯</div>
 
 </div>
 
@@ -219,6 +338,7 @@ mais vontade tenho de continuar virando as páginas.
 
 let pages=document.querySelectorAll(".page")
 let current=0
+let music=document.getElementById("music")
 
 function showPage(index){
 pages.forEach(p=>p.classList.remove("active"))
@@ -239,8 +359,14 @@ showPage(current)
 }
 }
 
-function playMusic(){
-document.getElementById("music").play()
+function toggleMusic(){
+
+if(music.paused){
+music.play()
+}else{
+music.pause()
+}
+
 }
 
 </script>
@@ -256,30 +382,39 @@ canvas.height=window.innerHeight
 let particles=[]
 
 for(let i=0;i<120;i++){
+
 particles.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 r:Math.random()*2+1,
 d:Math.random()*1
+
 })
+
 }
 
 function draw(){
+
 ctx.clearRect(0,0,canvas.width,canvas.height)
+
 ctx.fillStyle="#d4af37"
 
 particles.forEach(p=>{
+
 ctx.beginPath()
 ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
 ctx.fill()
+
 p.y+=p.d
 
 if(p.y>canvas.height){
 p.y=0
 }
+
 })
 
 requestAnimationFrame(draw)
+
 }
 
 draw()
