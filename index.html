@@ -30,10 +30,10 @@ width:100vw;
 }
 
 .arrow{
-font-size:34px;
+font-size:36px;
 color:#d4af37;
 cursor:pointer;
-padding:12px;
+padding:10px;
 user-select:none;
 }
 
@@ -43,7 +43,6 @@ width:96vw;
 max-width:620px;
 
 height:80vh;
-max-height:720px;
 
 background:#f3eee3;
 
@@ -54,19 +53,26 @@ box-shadow:
 
 padding:28px;
 
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-
 position:relative;
+
+display:flex;
+align-items:center;
+justify-content:center;
 
 }
 
 .page{
+
+position:absolute;
+
+width:90%;
+height:90%;
+
 display:none;
-height:100%;
+
 flex-direction:column;
 justify-content:space-between;
+
 }
 
 .page.active{
@@ -83,10 +89,8 @@ inset 0 0 10px rgba(212,175,55,0.4);
 
 background:#f3eee3;
 
-display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 
 }
 
@@ -94,7 +98,7 @@ align-items:center;
 
 font-family:"Great Vibes",cursive;
 
-font-size:44px;
+font-size:46px;
 
 font-weight:400;
 
@@ -185,7 +189,7 @@ line-height:1.6;
 
 <!-- CAPA -->
 
-<div class="page active cover">
+<div class="page cover active">
 
 <h1>Tudo Me Lembra Você</h1>
 
@@ -324,13 +328,11 @@ showPage(current)
 }
 
 function toggleMusic(){
-
 if(music.paused){
 music.play()
 }else{
 music.pause()
 }
-
 }
 
 </script>
@@ -346,25 +348,19 @@ canvas.height=window.innerHeight
 let particles=[]
 
 for(let i=0;i<120;i++){
-
 particles.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 r:Math.random()*2+1,
 d:Math.random()*1
-
 })
-
 }
 
 function draw(){
-
 ctx.clearRect(0,0,canvas.width,canvas.height)
-
 ctx.fillStyle="#d4af37"
 
 particles.forEach(p=>{
-
 ctx.beginPath()
 ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
 ctx.fill()
@@ -374,11 +370,9 @@ p.y+=p.d
 if(p.y>canvas.height){
 p.y=0
 }
-
 })
 
 requestAnimationFrame(draw)
-
 }
 
 draw()
