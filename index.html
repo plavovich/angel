@@ -42,8 +42,8 @@ user-select:none;
 width:94vw;
 max-width:680px;
 
-height:70vh;
-max-height:560px;
+height:65vh;
+max-height:520px;
 
 background:#f3eee3;
 
@@ -70,9 +70,10 @@ height:92%;
 display:none;
 
 flex-direction:column;
-justify-content:space-between;
+justify-content:flex-start;
 align-items:center;
 
+gap:18px;
 }
 
 .page.active{
@@ -127,7 +128,7 @@ color:#333;
 .image{
 
 width:100%;
-height:65%;
+height:60%;
 
 display:flex;
 align-items:center;
@@ -137,14 +138,17 @@ overflow:hidden;
 
 }
 
-/* IMAGEM */
+/* IMAGEM AJUSTADA */
 
-.page img{
+.image img{
 
-width:100%;
-height:100%;
+max-width:100%;
+max-height:100%;
 
-object-fit:cover;
+width:auto;
+height:auto;
+
+object-fit:contain;
 
 border-radius:8px;
 
@@ -199,8 +203,6 @@ line-height:1.6;
 
 <div class="book">
 
-<!-- CAPA -->
-
 <div class="page cover active">
 
 <h1>Tudo Me Lembra Você</h1>
@@ -208,8 +210,6 @@ line-height:1.6;
 <p>Pavlovich</p>
 
 </div>
-
-<!-- DEDICATÓRIA -->
 
 <div class="page">
 
@@ -228,8 +228,6 @@ me levando até você.
 
 </div>
 
-<!-- PÁGINAS -->
-
 <div class="page">
 <div class="image"><img src="lirios.jpg"></div>
 <div class="caption">Elegantes, intensos e impossíveis de ignorar — exatamente como a sua presença.</div>
@@ -247,40 +245,38 @@ me levando até você.
 
 <div class="page">
 <div class="image"><img src="musica.jpg"></div>
-<div class="caption">Beleza no estranho. Romance nas sombras.</div>
+<div class="caption">A música lembra você, pois algumas presenças parecem nascer para ser sentidas.</div>
 </div>
 
 <div class="page">
 <div class="image"><img src="vinho.jpg"></div>
-<div class="caption">Intenso, elegante e sempre carregando um pouco de mistério.</div>
+<div class="caption">O vinho lembra você, pois guarda intensidade em cada detalhe.</div>
 </div>
 
 <div class="page">
 <div class="image"><img src="arte.jpg"></div>
-<div class="caption">Porque você transforma expressão em algo que se sente.</div>
+<div class="caption">A arte lembra você, pois algumas pessoas transformam expressão em algo que se sente.</div>
 </div>
 
 <div class="page">
 <div class="image"><img src="poesia.jpg"></div>
-<div class="caption">Algumas pessoas parecem ter sido escritas em verso.</div>
+<div class="caption">A poesia lembra você, porque algumas pessoas parecem ter sido escritas em verso.</div>
 </div>
 
 <div class="page">
 <div class="image"><img src="melancolia.jpg"></div>
-<div class="caption">Existe uma beleza silenciosa nas emoções profundas.</div>
+<div class="caption">A melancolia lembra você, pois até as emoções silenciosas carregam beleza.</div>
 </div>
 
 <div class="page">
 <div class="image"><img src="sardas.jpg"></div>
-<div class="caption">Pequenas constelações que tornam alguém ainda mais único.</div>
+<div class="caption">As sardas lembram você, pois pequenas marcas também podem parecer constelações.</div>
 </div>
 
 <div class="page">
 <div class="image"><img src="tatuagem.jpg"></div>
-<div class="caption">Histórias gravadas na pele.</div>
+<div class="caption">As tatuagens lembram você, porque histórias também podem ser escritas na pele.</div>
 </div>
-
-<!-- EPÍLOGO -->
 
 <div class="page">
 
@@ -346,48 +342,6 @@ music.play()
 music.pause()
 }
 }
-
-</script>
-
-<script>
-
-const canvas=document.getElementById("particles")
-const ctx=canvas.getContext("2d")
-
-canvas.width=window.innerWidth
-canvas.height=window.innerHeight
-
-let particles=[]
-
-for(let i=0;i<120;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2+1,
-d:Math.random()*1
-})
-}
-
-function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height)
-ctx.fillStyle="#d4af37"
-
-particles.forEach(p=>{
-ctx.beginPath()
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
-ctx.fill()
-
-p.y+=p.d
-
-if(p.y>canvas.height){
-p.y=0
-}
-})
-
-requestAnimationFrame(draw)
-}
-
-draw()
 
 </script>
 
